@@ -1,16 +1,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: podinfo
-  namespace: podinfo
+  name: kong1
+  namespace: kong1
 spec:
-  releaseName: podinfo
+  releaseName: kong1
   chart:
     spec:
-      chart: podinfo
+      chart: kong1
       sourceRef:
         kind: HelmRepository
-        name: podinfo
+        name: kong1
   interval: 50m
   install:
     remediation:

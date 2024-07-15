@@ -1,27 +1,20 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: kong1
-  namespace: kong1
+  name: kong
 spec:
-  releaseName: kong1
+  interval: 5m
   chart:
     spec:
-      chart: kong1
+      chart: kong
+      version: 2.32.0
       sourceRef:
         kind: HelmRepository
-        name: kong1
-  interval: 50m
-  install:
-    remediation:
-      retries: 3
-  # Default values
-  # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
+        name: kong
+        namespace: kong1
+      interval: 1m
   values:
-    redis:
-      enabled: true
-      repository: public.ecr.aws/docker/library/redis
-      tag: 7.0.6
-    ingress:
-      enabled: true
-      className: nginx
+    image:
+      repository: kong/kong-gateway
+      tag: "3.4.3.11"
+    replicaCount: 1

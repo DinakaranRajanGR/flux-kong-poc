@@ -10,5 +10,3 @@ spec:
     name: flux-system
   path: ./apps/overlays/staging
   prune: true
-  wait: true
-  timeout: 5m0s
